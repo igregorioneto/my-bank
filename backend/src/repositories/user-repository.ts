@@ -14,6 +14,11 @@ class UserRepository {
         return await User.findOne({ email });
     }
 
+    public async getUsersTransfer(id: string): Promise<UserInterface[]> {
+        const users = await User.find({}, '-password');
+        return users.filter(u => u._id != id);
+    }
+
     public async create(data: UserInterface): Promise<UserInterface> {
         const user = new User(data);
         return await user.save();

@@ -9,5 +9,11 @@
     },
     "include": [
       "src/**/*.ts"
+    ],
+    "typeRoots": [
+      "./src/@types",
+      "./custom_typings",
+      "./@types",
+      "./node_modules/@types"
     ]
   }
