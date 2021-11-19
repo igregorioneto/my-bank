@@ -3,5 +3,5 @@ export interface TransactionInterface {
     user_id?:string,
     transfer_id?:string,
     value?:number,
-    roles?:string[]
+    type_transaction?:number
 }

@@ -11,7 +11,6 @@ class UserController {
 
     public async create(req: Request, res: Response): Promise<Response> {
         const { name, email, password } = req.body;
-        console.log(req.body)
         const user = await UserRepository.getUserEmail(email);
         if (user) {
             return res.status(404).send({

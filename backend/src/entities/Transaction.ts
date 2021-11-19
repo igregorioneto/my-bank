@@ -6,16 +6,16 @@ const schema = new Schema({
         type: String
     },
     transfer_id:{
-        type: String
+        type: String,
+        default: ''
     },
     value:{
         type: Number
     },
-    roles:[{
-        type: String,
+    type_transaction:{
+        type: Number,
         required: true,
-        enum: ['deposit', 'withdraw', 'transfer']
-    }],
+    }
 });
 
 export const Transaction: Model<TransactionInterface> = model<TransactionInterface>('Transaction', schema);
