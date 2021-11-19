@@ -3,5 +3,6 @@ export interface TransactionInterface {
     user_id?:string,
     transfer_id?:string,
     value?:number,
+    createdAt?: Date,
     type_transaction?:number
 }

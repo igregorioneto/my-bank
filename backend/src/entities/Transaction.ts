@@ -12,6 +12,11 @@ const schema = new Schema({
     value:{
         type: Number
     },
+    createdAt:{
+        type: Date,
+        required: true,
+        default: Date.now
+    },
     type_transaction:{
         type: Number,
         required: true,
