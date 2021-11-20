@@ -1,1 +1,25 @@
-<p>cadastro works!</p>
+<div class="login-form">
+    <div class="login">
+        <h3 class="mb-3 title">Cadastre-se</h3>
+
+        <form class="formulario">
+            <div class="col-6">
+                
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Seu nome">
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" placeholder="Seu email">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" placeholder="Sua senha">
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+                <div class="form-text offset-md-6">ou</div>
+                <div class="form-text offset-md-6">
+                    Já tem uma conta? <a [routerLink]="['/']">Sing in!</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
