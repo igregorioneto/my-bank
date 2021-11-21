@@ -6,7 +6,7 @@
     <div class="cadastro">
         <h3 class="mb-3 title">Cadastre-se</h3>
 
-        <form [formGroup]="cadastroForm" class="formulario">
+        <form [formGroup]="cadastroForm" class="formulario was-validated" (ngSubmit)="create(cadastroForm.value)">
             <div class="col-6">
                 
                 <div class="mb-3">
@@ -14,8 +14,8 @@
                     <div class="invalid-feedback">
                         <ng-container class="errors" *ngFor="let validation of validationMessages.name">
                             <div 
-                                class="invalid-feedback"
-                                *ngIf="cadastroForm.get('name')?.hasError(validation.type) && (cadastroForm.get('name')?.dirty || cadastroForm.get('name')?.touched)">
+                            class="error-message-without-label invalid-feedback"
+                            *ngIf="cadastroForm.get('name')?.hasError(validation.type) && (cadastroForm.get('name')?.dirty || cadastroForm.get('name')?.touched)">
                                 {{validation.message}}
                             </div>
                         </ng-container>
@@ -28,7 +28,7 @@
                         <ng-container class="errors" *ngFor="let validation of validationMessages.email">
                             <div 
                                 class="invalid-feedback"
-                                *ngIf="cadastroForm.get('email')?.errors?.['required']">
+                                *ngIf="cadastroForm.get('email')?.hasError(validation.type) && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)">
                                 {{validation.message}}
                             </div>
                         </ng-container>
@@ -47,12 +47,16 @@
                         </ng-container>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
-                <div class="form-text offset-md-6">ou</div>
-                <div class="form-text offset-md-6">
-                    Já tem uma conta? <a [routerLink]="['/']">Sing in!</a>
-                </div>
             </div>
         </form>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-lg" (click)="create(cadastroForm.value)">
+                Cadastrar
+            </button>
+            <div class="form-text offset-md-6">ou</div>
+            <div class="form-text offset-md-6">
+                Já tem uma conta? <a [routerLink]="['/']">Sing in!</a>
+            </div>
+        </div>
     </div>
 </div>

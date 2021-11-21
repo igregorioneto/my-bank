@@ -6,14 +6,32 @@
     <div class="login">
         <h3 class="mb-3 title">Sign in</h3>
 
-        <form class="formulario">
+        <form class="formulario was-validated" [formGroup]="loginForm">
             <div class="col-6">
                 
                 <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Seu email">
+                    <input formControlName="email" type="email" class="form-control" placeholder="Seu email">
+                    <div class="invalid-feedback">
+                        <ng-container class="errors" *ngFor="let validation of validationMessages.email">
+                            <div 
+                                class="invalid-feedback"
+                                *ngIf="loginForm.get('email')?.hasError(validation.type) && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+                                {{validation.message}}
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Sua senha">
+                    <input formControlName="password" type="password" class="form-control" placeholder="Sua senha">
+                    <div class="invalid-feedback">
+                        <ng-container class="errors" *ngFor="let validation of validationMessages.password">
+                            <div 
+                                class="invalid-feedback"
+                                *ngIf="loginForm.get('password')?.hasError(validation.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                                {{validation.message}}
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Logar</button>
                 <div class="form-text offset-md-6">ou</div>

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +13,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  validationMessages = {
+    email: [
+      {
+        type: 'required',
+        message: 'Insira o nome completo'
+      },
+      {
+        type: 'pattern',
+        message: 'Por favor, insira um e-mail válido'
+      }
+    ],
+    password: [
+      {
+        type: 'required',
+        message: 'Senha obrigatória'
+      },
+      {
+        type: 'minlength',
+        message: 'Tamanho mínimo de 10 caracteres.'
+      },
+      {
+        type: 'maxlength',
+        message: 'Tamanho máximo de 30 caracteres'
+      }
+    ],
+  }
+
+  loginForm: FormGroup;
+
+  constructor(public readonly formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group(
+      {
+        email: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(
+              '^([\\w\\.\\-]+)@([\\w\\-]+)?((\\.(\\w){0,1000}){0,5})()$'
+            )
+          ]),
+        ),
+        password: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(4),
+            Validators.minLength(30)
+          ])
+        )
+      }
+    );
   }
 
 }

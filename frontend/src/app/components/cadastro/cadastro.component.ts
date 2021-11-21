@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { CadastroService } from 'src/app/services/cadastro.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -47,7 +48,10 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastroForm: FormGroup;
-  constructor(public readonly formBuilder: FormBuilder) { }
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly cadastroService: CadastroService,
+  ) { }
 
   ngOnInit(): void {
     this.cadastroForm = this.formBuilder.group(
@@ -72,11 +76,21 @@ export class CadastroComponent implements OnInit {
           Validators.compose([
             Validators.required,
             Validators.minLength(4),
-            Validators.minLength(30)
+            Validators.maxLength(30)
           ])
         )
       }
-    )
+    );
+  }
+
+  async create(cadastro: any) {
+    const { name, email, password } = cadastro;
+    console.log(cadastro);
+    this.cadastroService.create({
+      name,
+      email,
+      password
+    }).subscribe(() => {});
   }
 
 }
