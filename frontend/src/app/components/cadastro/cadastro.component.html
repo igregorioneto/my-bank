@@ -1,18 +1,51 @@
-<div class="login-form">
-    <div class="login">
+<div class="cadastro-form">
+    <div class="imagem">
+        <img src="../../../assets/img/bank-login.png" alt="">
+    </div>
+
+    <div class="cadastro">
         <h3 class="mb-3 title">Cadastre-se</h3>
 
-        <form class="formulario">
+        <form [formGroup]="cadastroForm" class="formulario">
             <div class="col-6">
                 
                 <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Seu nome">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Seu nome">
+                    <div class="invalid-feedback">
+                        <ng-container class="errors" *ngFor="let validation of validationMessages.name">
+                            <div 
+                                class="invalid-feedback"
+                                *ngIf="cadastroForm.get('name')?.hasError(validation.type) && (cadastroForm.get('name')?.dirty || cadastroForm.get('name')?.touched)">
+                                {{validation.message}}
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
+
                 <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Seu email">
+                    <input formControlName="email" type="email" class="form-control" placeholder="Seu email">
+                    <div class="invalid-feedback">
+                        <ng-container class="errors" *ngFor="let validation of validationMessages.email">
+                            <div 
+                                class="invalid-feedback"
+                                *ngIf="cadastroForm.get('email')?.errors?.['required']">
+                                {{validation.message}}
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
+
                 <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Sua senha">
+                    <input formControlName="password" type="password" class="form-control" placeholder="Sua senha">
+                    <div class="invalid-feedback">
+                        <ng-container class="errors" *ngFor="let validation of validationMessages.password">
+                            <div 
+                                class="invalid-feedback"
+                                *ngIf="cadastroForm.get('password')?.hasError(validation.type) && (cadastroForm.get('password')?.dirty || cadastroForm.get('password')?.touched)">
+                                {{validation.message}}
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
                 <div class="form-text offset-md-6">ou</div>

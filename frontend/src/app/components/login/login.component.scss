@@ -1,23 +1,39 @@
-.login {
-    .formulario {
-        margin-top: 20px;
-    }
+.login-form {
+    display: flex;
 
-    .title {
-        margin-top: 20px;
-    }
+    .imagem {
+        flex: 1;
     
-    button {
-        margin: 10px 0;
-        width: 100%;
+        img {
+            width: 1200px;
+            height: 1024px;
+        }
     }
 
-    .form-text {
-        margin: 10px 0;
-        text-align: center;
-
-        a {
-          text-decoration: none;  
+    .login {
+        flex: 1;
+        margin-left: 100px;
+        margin-top: 150px;
+        .formulario {
+            margin-top: 20px;
+        }
+    
+        .title {
+            margin-top: 20px;
+        }
+        
+        button {
+            margin: 10px 0;
+            width: 100%;
+        }
+    
+        .form-text {
+            margin: 10px 0;
+            text-align: center;
+    
+            a {
+              text-decoration: none;  
+            }
         }
     }
 }
