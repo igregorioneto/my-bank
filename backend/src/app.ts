@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import { connectionString } from "./config";
+import { connectionString, corsOptions } from "./config";
+import cors from "cors";
 
 import userRoute from "./routes/use-route";
 import authRoute from "./routes/auth-route";
@@ -19,6 +20,7 @@ class App {
 
     private middlewares(): void {
         this.express.use(express.json());
+        this.express.use(cors(corsOptions));
     }
 
     private dabatase(): void {
