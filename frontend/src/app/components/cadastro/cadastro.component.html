@@ -6,51 +6,39 @@
     <div class="cadastro">
         <h3 class="mb-3 title">Cadastre-se</h3>
 
-        <form [formGroup]="cadastroForm" class="formulario was-validated" (ngSubmit)="create(cadastroForm.value)">
+        <form [formGroup]="cadastroForm" class="formulario" (ngSubmit)="create(cadastroForm.value)">
             <div class="col-6">
                 
                 <div class="mb-3">
                     <input formControlName="name" type="text" class="form-control" placeholder="Seu nome">
-                    <div class="invalid-feedback">
-                        <ng-container class="errors" *ngFor="let validation of validationMessages.name">
-                            <div 
-                            class="error-message-without-label invalid-feedback"
-                            *ngIf="cadastroForm.get('name')?.hasError(validation.type) && (cadastroForm.get('name')?.dirty || cadastroForm.get('name')?.touched)">
-                                {{validation.message}}
-                            </div>
-                        </ng-container>
+                    <div class="errors" *ngFor="let validation of validationMessages.name">
+                        <div *ngIf="cadastroForm.get('name')?.hasError(validation.type) && (cadastroForm.get('name')?.dirty || cadastroForm.get('name')?.touched)">
+                            <span class="message-error">{{validation.message}}</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <input formControlName="email" type="email" class="form-control" placeholder="Seu email">
-                    <div class="invalid-feedback">
-                        <ng-container class="errors" *ngFor="let validation of validationMessages.email">
-                            <div 
-                                class="invalid-feedback"
-                                *ngIf="cadastroForm.get('email')?.hasError(validation.type) && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)">
-                                {{validation.message}}
-                            </div>
-                        </ng-container>
+                    <div class="errors" *ngFor="let validation of validationMessages.email">
+                        <div *ngIf="cadastroForm.get('email')?.hasError(validation.type) && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)">
+                            <span class="message-error">{{validation.message}}</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <input formControlName="password" type="password" class="form-control" placeholder="Sua senha">
-                    <div class="invalid-feedback">
-                        <ng-container class="errors" *ngFor="let validation of validationMessages.password">
-                            <div 
-                                class="invalid-feedback"
-                                *ngIf="cadastroForm.get('password')?.hasError(validation.type) && (cadastroForm.get('password')?.dirty || cadastroForm.get('password')?.touched)">
-                                {{validation.message}}
-                            </div>
-                        </ng-container>
+                    <input formControlName="password" MAXLENGTH=30 type="password" class="form-control" placeholder="Sua senha">
+                    <div class="errors" *ngFor="let validation of validationMessages.password">
+                        <div *ngIf="cadastroForm.get('password')?.hasError(validation.type) && (cadastroForm.get('password')?.dirty || cadastroForm.get('password')?.touched)">
+                            <span class="message-error">{{validation.message}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
         <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-lg" (click)="create(cadastroForm.value)">
+            <button [disabled]="!cadastroForm.valid" type="submit" class="btn btn-primary btn-lg" (click)="create(cadastroForm.value)">
                 Cadastrar
             </button>
             <div class="form-text offset-md-6">ou</div>

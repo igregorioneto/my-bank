@@ -26,7 +26,7 @@ export class CadastroComponent implements OnInit {
     email: [
       {
         type: 'required',
-        message: 'Insira o nome completo'
+        message: 'Insira seu e-mail'
       },
       {
         type: 'pattern',
@@ -40,7 +40,7 @@ export class CadastroComponent implements OnInit {
       },
       {
         type: 'minlength',
-        message: 'Tamanho mínimo de 10 caracteres.'
+        message: 'Tamanho mínimo de 6 caracteres.'
       },
       {
         type: 'maxlength',
@@ -79,7 +79,7 @@ export class CadastroComponent implements OnInit {
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(4),
+            Validators.minLength(6),
             Validators.maxLength(30)
           ])
         )

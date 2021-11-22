@@ -6,39 +6,35 @@
     <div class="login">
         <h3 class="mb-3 title">Sign in</h3>
 
-        <form class="formulario was-validated" [formGroup]="loginForm">
+        <form class="formulario" [formGroup]="loginForm" (ngSubmit)="logar(loginForm.value)">
             <div class="col-6">
                 
                 <div class="mb-3">
                     <input formControlName="email" type="email" class="form-control" placeholder="Seu email">
-                    <div class="invalid-feedback">
-                        <ng-container class="errors" *ngFor="let validation of validationMessages.email">
-                            <div 
-                                class="invalid-feedback"
-                                *ngIf="loginForm.get('email')?.hasError(validation.type) && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
-                                {{validation.message}}
-                            </div>
-                        </ng-container>
+                    <div class="errors" *ngFor="let validation of validationMessages.email">
+                        <div *ngIf="loginForm.get('email')?.hasError(validation.type) && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+                            <span class="message-error">{{validation.message}}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <input formControlName="password" type="password" class="form-control" placeholder="Sua senha">
-                    <div class="invalid-feedback">
-                        <ng-container class="errors" *ngFor="let validation of validationMessages.password">
-                            <div 
-                                class="invalid-feedback"
-                                *ngIf="loginForm.get('password')?.hasError(validation.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-                                {{validation.message}}
-                            </div>
-                        </ng-container>
+                    <input formControlName="password" MAXLENGTH=30 type="password" class="form-control" placeholder="Sua senha">
+                    <div class="errors" *ngFor="let validation of validationMessages.password">
+                        <div *ngIf="loginForm.get('password')?.hasError(validation.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                            <span class="message-error">{{validation.message}}</span>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg">Logar</button>
-                <div class="form-text offset-md-6">ou</div>
-                <div class="form-text offset-md-6">
-                    Ainda não tem uma conta? <a [routerLink]="['/cadastrar']">Cadastre aqui!</a>
                 </div>
             </div>
         </form>
+        <div class="col-6">
+            <button [disabled]="!loginForm.valid" (click)="logar(loginForm.value)" type="submit" class="btn btn-primary btn-lg">
+                Logar
+            </button>
+            <div class="form-text offset-md-6">ou</div>
+            <div class="form-text offset-md-6">
+                Ainda não tem uma conta? <a [routerLink]="['/cadastrar']">Cadastre aqui!</a>
+            </div>
+        </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
       },
       {
         type: 'minlength',
-        message: 'Tamanho mínimo de 10 caracteres.'
+        message: 'Tamanho mínimo de 6 caracteres.'
       },
       {
         type: 'maxlength',
@@ -42,7 +43,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(public readonly formBuilder: FormBuilder) { }
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly loginService: LoginService
+    ) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
@@ -60,10 +64,18 @@ export class LoginComponent implements OnInit {
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(4),
-            Validators.minLength(30)
+            Validators.minLength(6),
+            Validators.maxLength(30)
           ])
         )
+      }
+    );
+  }
+
+  async logar(data: any) {
+    this.loginService.login(data).subscribe(
+      (data) => {
+        console.log(data);
       }
     );
   }
