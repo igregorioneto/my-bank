@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import transactionRepository from '../repositories/transaction-repository';
+import authService from '../services/auth-service';
 
 class TransactionController {
     public async getTransactions(req: Request, res: Response): Promise<Response> {
@@ -9,8 +10,11 @@ class TransactionController {
 
     public async deposit(req: Request, res: Response): Promise<Response> {
         try {
-            const { user_id, type_transaction, value, transfer_id } = req.body;
-
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            const { type_transaction, value, transfer_id } = req.body;
+            const user_id_token = await authService.decodeToken(token);
+            const user_id = user_id_token.id;
+            
             if (type_transaction === 0) {
                 const deposit = await transactionRepository.deposit({
                     user_id,

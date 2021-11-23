@@ -1,0 +1,28 @@
+<div class="col-12 deposit">
+    <div class="row">
+        <h3 class="mb-3 title">Realize um depósito:</h3>
+    </div>
+
+    <div class="row">
+        <form class="formulario" [formGroup]="depositForm" (ngSubmit)="depositValue(depositForm.value)">
+            <div class="mb-3">
+                <input formControlName="value" type="number" class="form-control" placeholder="Deposite um valor">
+                <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="depositForm.get('value')?.hasError(validation.type) && (depositForm.get('value')?.dirty || depositForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="row">
+        <button (click)="onNoClick()" type="submit" class="btn btn-secondary">
+            Sair
+        </button>
+        
+        <button [disabled]="!depositForm.valid" (click)="depositValue(depositForm.value)" type="submit" class="btn btn-primary">
+            Depositar
+        </button>
+    </div>
+</div>

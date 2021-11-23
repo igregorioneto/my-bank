@@ -14,6 +14,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Interceptor } from './interceptor/token.interceptor.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DepositDialogComponent } from './components/home/deposit-dialog/deposit-dialog.component';
+
 
 
 @NgModule({
@@ -21,7 +24,8 @@ import { Interceptor } from './interceptor/token.interceptor.module';
     AppComponent,
     LoginComponent,
     CadastroComponent,
-    HomeComponent
+    HomeComponent,
+    DepositDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,7 @@ import { Interceptor } from './interceptor/token.interceptor.module';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatDialogModule,
     Interceptor
   ],
   providers: [

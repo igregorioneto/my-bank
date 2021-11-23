@@ -13,6 +13,7 @@
         text-transform: uppercase;
         vertical-align: middle;
         display: inline-block;
+        margin-top: 20px;
     }
 
     .balance {
@@ -24,11 +25,13 @@
 
 .options {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     .card-options {
         cursor: pointer;
         text-align: center;
-        width: 31.25rem;
+        width: 25.25rem;
         height: 100px;
         margin: 50px auto;
         h5 {

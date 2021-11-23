@@ -4,7 +4,7 @@
             <nav class="navbar navbar-light bg-light ">
                 <div class="container-fluid">
                   <a class="navbar-brand">
-                    <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="../../../assets/img/logo.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     <span class="name">{{ name }}</span>
                     <span class="balance"> seu saldo é de R$ {{ balance }}</span>
                   </a>
@@ -15,9 +15,9 @@
     </div>
 
     <div class="row options">
-        <div class="col">
+        <div class="col-8">
             <div class="row">
-                <div class="card text-white bg-success mb-3 card-options">
+                <div (click)="depositDialog()" class="card text-white bg-success mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Deposito</h5>
                     </div>
@@ -43,13 +43,32 @@
             <div class="list-group">
                 <div class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small>3 days ago</small>
+                    <h5 class="mb-1">Deposito</h5>
+                    <small>23 de novembro de 2020 as 17:15</small>
                   </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small>And some small print.</small>
+                  <p class="mb-1">Valor depositado de R$50,00</p>
                 </div>
               </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
