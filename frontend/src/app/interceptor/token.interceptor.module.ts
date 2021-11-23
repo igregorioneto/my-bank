@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServicesService } from '../services/services.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -16,11 +17,23 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let token = this.servicesService.retrive();
-    console.log(token);
+    let header = token !== null ? JSON.parse(token) : '';
+
     const authReq = request.clone({
-      headers: new HttpHeaders().set('x-access-token', token)
+      headers: request.headers.set('x-access-token', (header) ? header : '' )
     });
     
     return next.handle(authReq);
   }
 }
+
+
+@NgModule({
+  providers: [{
+     provide: HTTP_INTERCEPTORS,
+     useClass: TokenInterceptor,
+     multi: true,
+  }]
+})
+
+export class Interceptor { }

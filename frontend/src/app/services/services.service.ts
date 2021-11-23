@@ -18,7 +18,6 @@ export class ServicesService {
 
   retrive() {
     let stroredToken = localStorage.getItem(this.tokenKey);
-    if (!stroredToken) throw 'nenhum token encontrado';
     return stroredToken;
   }
 }

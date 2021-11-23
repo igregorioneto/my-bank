@@ -13,7 +13,7 @@ class AuthService {
 
     public async authorize(req: Request, res: Response, next: NextFunction) {
         const token = req.body.token || req.query.token || req.headers['x-access-token'];
-        console.log(token);
+        
         if(!token) {    
             res.status(401).send({
                 error: 'Acesso restrito!'
@@ -21,6 +21,7 @@ class AuthService {
         } else {
             jwt.verify(token, process.env.SECRET, (error, decoded) => {
                 if(error) {
+                    console.log(error);
                     res.status(401).send({
                         error: 'Token inválido'
                     });

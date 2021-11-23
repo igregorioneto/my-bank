@@ -16,9 +16,6 @@ export class HomeService {
   ) {}
 
   public userLogged(): Observable<any> {
-    let token = this.servicesService.retrive();
-    let headers = new HttpHeaders().set('x-access-token', token);
-    console.log(headers.get('x-access-token'));
-    return this.http.get<any>(`${this.url}/user/logged`, {headers: headers});
+    return this.http.get<any>(`${this.url}/user/logged`);
   }
 }

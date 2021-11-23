@@ -13,8 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './interceptor/token.interceptor';
+import { Interceptor } from './interceptor/token.interceptor.module';
 
 
 @NgModule({
@@ -30,7 +29,8 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    Interceptor
   ],
   providers: [
     
