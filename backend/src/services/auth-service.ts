@@ -13,8 +13,8 @@ class AuthService {
 
     public async authorize(req: Request, res: Response, next: NextFunction) {
         const token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-        if(!token) {
+        console.log(token);
+        if(!token) {    
             res.status(401).send({
                 error: 'Acesso restrito!'
             });

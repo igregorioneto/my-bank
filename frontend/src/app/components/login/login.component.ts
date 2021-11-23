@@ -5,7 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { ServicesService } from 'src/app/services/services.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +21,7 @@ export class LoginComponent implements OnInit {
     email: [
       {
         type: 'required',
-        message: 'Insira o nome completo'
+        message: 'Insira o email'
       },
       {
         type: 'pattern',
@@ -45,10 +48,15 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly loginService: LoginService
+    private readonly loginService: LoginService,
+    private readonly servicesService: ServicesService,
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
     ) { }
 
   ngOnInit(): void {
+    this.servicesService.remove();
+
     this.loginForm = this.formBuilder.group(
       {
         email: new FormControl(
@@ -73,11 +81,31 @@ export class LoginComponent implements OnInit {
   }
 
   async logar(data: any) {
-    this.loginService.login(data).subscribe(
+    const { email, password } = data;
+    await this.loginService.login({
+      email,
+      password
+    }).subscribe(
       (data) => {
+        this.servicesService.store(data.token);
+        this.snackMessage('Bem vindo!', 'blue-snackbar');
+        this.router.navigate(['/home']);
         console.log(data);
+      },
+      (error) => {
+        console.log(error);
+        this.snackMessage(error.error.error, 'red-snackbar');
       }
     );
+  }
+
+  // SnakBar
+  snackMessage(message: string, classValue: string) {
+    this.snackBar.open(message, 'x', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: [classValue, 'login-snackbar'],
+    });
   }
 
 }

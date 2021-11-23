@@ -36,6 +36,26 @@ class UserController {
         }
     }
 
+    public async getUsersLogger(req: Request, res: Response): Promise<Response> {
+        try {
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            let userId;
+            await authService.decodeToken(token).then(data => userId = data.id);
+    
+            const logged = await UserRepository.getUserById(userId);
+            if (!logged) {
+                return res.status(404).send({
+                    error: 'Usuário não existe!'
+                });
+            }
+            return res.status(200).send(logged);
+        } catch(error) {
+            return res.status(404).send({
+                error: 'Erro ao realizar a busca do usuário logado'
+            });
+        }
+    }
+
     public async create(req: Request, res: Response): Promise<Response> {
         try {
             const { name, email, password } = req.body;
@@ -71,7 +91,7 @@ class UserController {
             const user = await UserRepository.getUserEmail(email);
             if (!user) {
                 return res.status(404).send({
-                    message: 'Invalid Username or Password!'
+                    message: 'Email ou Senha inválidos!'
                 });
             }
             
@@ -79,7 +99,7 @@ class UserController {
         
             if (!checkedPassword) {
                 return res.status(422).send({
-                    error: 'Invalid password!'
+                    error: 'Senha inválida!'
                 });
             }
     

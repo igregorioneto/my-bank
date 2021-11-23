@@ -6,8 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CadastroService } from 'src/app/services/cadastro.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ServicesService } from 'src/app/services/services.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cadastro',
@@ -53,6 +54,7 @@ export class CadastroComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly cadastroService: CadastroService,
+    private readonly servicesService: ServicesService,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
   ) { }
@@ -89,7 +91,6 @@ export class CadastroComponent implements OnInit {
 
   async create(cadastro: any) {
     const { name, email, password } = cadastro;
-    console.log(cadastro);
     this.cadastroService.create({
       name,
       email,
@@ -97,7 +98,7 @@ export class CadastroComponent implements OnInit {
     }).subscribe(
       () => {
         this.snackMessage('Usuário cadastrado com sucesso!', 'green-snackbar');
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.log(error);
@@ -107,6 +108,7 @@ export class CadastroComponent implements OnInit {
     this.cadastroForm.reset();
   }
 
+  // SnakBar
   snackMessage(message: string, classValue: string) {
     this.snackBar.open(message, 'x', {
       horizontalPosition: 'center',
@@ -114,5 +116,4 @@ export class CadastroComponent implements OnInit {
       panelClass: [classValue, 'login-snackbar'],
     });
   }
-
 }

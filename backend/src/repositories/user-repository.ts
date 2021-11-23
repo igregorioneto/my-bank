@@ -7,7 +7,7 @@ class UserRepository {
     }
 
     public async getUserById(id: string): Promise<UserInterface> {
-        return await User.findById(id);
+        return await User.findById(id, '-password');
     }
 
     public async getUserEmail(email: string): Promise<UserInterface> {
