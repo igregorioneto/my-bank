@@ -1,10 +1,40 @@
 .menu .navbar-light{
     height: 100px;
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 30px;
+    }
+
+    .name {
+        font-weight: bold;
+        text-transform: uppercase;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .balance {
+        font-size: 16px;
+        margin-left: 80px;
+        display: block;
+    }
 }
 
 .options {
+    display: flex;
+    justify-content: space-between;
     .card-options {
+        cursor: pointer;
+        text-align: center;
+        width: 31.25rem;
+        height: 100px;
         margin: 50px auto;
+        h5 {
+            font-size: 25px;
+            margin-top: 15px;
+        }
     }
 }
 

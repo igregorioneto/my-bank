@@ -5,9 +5,10 @@
                 <div class="container-fluid">
                   <a class="navbar-brand">
                     <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    Bootstrap
+                    <span class="name">{{ name }}</span>
+                    <span class="balance"> seu saldo é de R$ {{ balance }}</span>
                   </a>
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="#">Sair</a>
                 </div>
             </nav>
         </div>
@@ -16,27 +17,21 @@
     <div class="row options">
         <div class="col">
             <div class="row">
-                <div class="card text-white bg-success mb-3 card-options" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div class="card text-white bg-success mb-3 card-options">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Deposito</h5>
                     </div>
                 </div>
 
-                <div class="card text-white bg-info mb-3 card-options" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div class="card text-white bg-info mb-3 card-options">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Saque</h5>
                     </div>
                 </div>
 
-                <div class="card text-white bg-dark mb-3 card-options" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div class="card text-white bg-dark mb-3 card-options">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Transferência</h5>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,8 @@ import { ServicesService } from 'src/app/services/services.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  name = '';
+  balance = 0;
   constructor(
     private readonly homeService: HomeService,
     private readonly servicesService: ServicesService,
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit {
     this.homeService.userLogged()
       .subscribe(
         (data) => {
+          this.name = data.name;
+          this.balance = data.balance;
           console.log(data);
         }
       )
