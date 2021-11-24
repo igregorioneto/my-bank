@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Interceptor } from './interceptor/token.interceptor.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DepositDialogComponent } from './components/home/deposit-dialog/deposit-dialog.component';
+import { WithdrawDialogComponent } from './components/home/withdraw-dialog/withdraw-dialog.component';
+import { TransferDialogComponent } from './components/home/transfer-dialog/transfer-dialog.component';
 
 
 
@@ -25,7 +27,9 @@ import { DepositDialogComponent } from './components/home/deposit-dialog/deposit
     LoginComponent,
     CadastroComponent,
     HomeComponent,
-    DepositDialogComponent
+    DepositDialogComponent,
+    WithdrawDialogComponent,
+    TransferDialogComponent
   ],
   imports: [
     BrowserModule,

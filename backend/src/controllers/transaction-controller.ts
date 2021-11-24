@@ -45,7 +45,11 @@ class TransactionController {
 
     public async withdraw(req: Request, res: Response): Promise<Response> {
         try {
-            const { user_id, type_transaction, value, transfer_id } = req.body;
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            const { type_transaction, value, transfer_id } = req.body;
+            const user_id_token = await authService.decodeToken(token);
+            const user_id = user_id_token.id;
+
             if (type_transaction === 1) {
                 const withdraw = await transactionRepository.withdraw({
                     user_id,
@@ -82,7 +86,11 @@ class TransactionController {
 
     public async transfer(req: Request, res: Response): Promise<Response> {
         try {
-            const { user_id, type_transaction, value, transfer_id } = req.body;
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            const { type_transaction, value, transfer_id } = req.body;
+            const user_id_token = await authService.decodeToken(token);
+            const user_id = user_id_token.id;
+            
             if (type_transaction === 2) {
                 const transfer = await transactionRepository.transfer({
                     user_id,

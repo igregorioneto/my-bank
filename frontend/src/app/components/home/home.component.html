@@ -6,9 +6,9 @@
                   <a class="navbar-brand">
                     <img src="../../../assets/img/logo.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     <span class="name">{{ name }}</span>
-                    <span class="balance"> seu saldo é de R$ {{ balance }}</span>
+                    <span class="balance"> seu saldo é de {{ balance | currency : 'BRL' }}</span>
                   </a>
-                  <a class="nav-link" href="#">Sair</a>
+                  <a class="nav-link close" (click)="close()">Sair</a>
                 </div>
             </nav>
         </div>
@@ -23,13 +23,13 @@
                     </div>
                 </div>
 
-                <div class="card text-white bg-info mb-3 card-options">
+                <div (click)="withdrawDialog()" class="card text-white bg-info mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Saque</h5>
                     </div>
                 </div>
 
-                <div class="card text-white bg-dark mb-3 card-options">
+                <div (click)="transferDialog()" class="card text-white bg-dark mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Transferência</h5>
                     </div>
@@ -41,34 +41,17 @@
     <div class="row transactions">
         <div class="col-8">
             <div class="list-group">
-                <div class="list-group-item list-group-item-action" aria-current="true">
+                <div *ngFor="let info of transactions" class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Deposito</h5>
-                    <small>23 de novembro de 2020 as 17:15</small>
+                    <h5 *ngIf="info.type_transaction === 0" class="mb-1">Deposito</h5>
+                    <h5 *ngIf="info.type_transaction === 1" class="mb-1">Saque</h5>
+                    <h5 *ngIf="info.type_transaction === 2" class="mb-1">Transferência</h5>
+                    
+                    <small>{{ info.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
                   </div>
-                  <p class="mb-1">Valor depositado de R$50,00</p>
+                  <p class="mb-1">Valor depositado de {{ info.value | currency : 'BRL' }}</p>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>

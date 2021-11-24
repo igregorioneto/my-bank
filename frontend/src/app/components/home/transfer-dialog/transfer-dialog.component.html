@@ -1,0 +1,38 @@
+<div class="col-12 transfer">
+    <div class="row">
+        <h3 class="mb-3 title">Realize uma transferência:</h3>
+    </div>
+
+    <div class="row">
+        <form class="formulario" [formGroup]="transferForm" (ngSubmit)="transferValue(transferForm.value)">
+            <div class="mb-3">
+                <select (change)="changeTransfer($event)" formControlName="transferUser" class="form-select">
+                    <option value="" selected>Selecione um usuário para transferir um valor</option>
+                    <option *ngFor="let transfer of selectTransfer" [value]="transfer._id">
+                        {{ transfer.name | uppercase }}
+                    </option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <input formControlName="value" type="number" class="form-control" placeholder="Deposite um valor">
+                <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="transferForm.get('value')?.hasError(validation.type) && (transferForm.get('value')?.dirty || transferForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="row">
+        <button (click)="onNoClick()" type="submit" class="btn btn-secondary">
+            Sair
+        </button>
+        
+        <button [disabled]="!transferForm.valid" (click)="transferValue(transferForm.value)" type="submit" class="btn btn-primary">
+            Transferir
+        </button>
+    </div>
+</div>

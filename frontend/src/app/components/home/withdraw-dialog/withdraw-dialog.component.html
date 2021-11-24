@@ -1,0 +1,29 @@
+<div class="col-12 withdraw">
+    <div class="row">
+        <h3 class="mb-3 title">Realize um saque:</h3>
+    </div>
+
+    <div class="row">
+        <form class="formulario" [formGroup]="withdrawForm" (ngSubmit)="withdrawValue(withdrawForm.value)">
+            <div class="mb-3">
+                <input formControlName="value" type="number" class="form-control" placeholder="Deposite um valor">
+                <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="withdrawForm.get('value')?.hasError(validation.type) && (withdrawForm.get('value')?.dirty || withdrawForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="row">
+        <button (click)="onNoClick()" type="submit" class="btn btn-secondary">
+            Sair
+        </button>
+        
+        <button [disabled]="!withdrawForm.valid" (click)="withdrawValue(withdrawForm.value)" type="submit" class="btn btn-primary">
+            Saque
+        </button>
+    </div>
+</div>
