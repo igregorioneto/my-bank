@@ -89,14 +89,14 @@ class UserController {
             const { email, password } = req.body;
 
             const user = await UserRepository.getUserEmail(email);
-            if (!user) {
+            if (!user || !user.password) {
                 return res.status(404).send({
                     message: 'Email ou Senha inválidos!'
                 });
             }
             
-            const checkedPassword = await bcrypt.compare(password, user.password);
-        
+            const checkedPassword = bcrypt.compare(password, user.password);
+            console.log(checkedPassword);
             if (!checkedPassword) {
                 return res.status(422).send({
                     error: 'Senha inválida!'

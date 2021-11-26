@@ -43,13 +43,18 @@
             <div class="list-group">
                 <div *ngFor="let info of transactions" class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 *ngIf="info.type_transaction === 0" class="mb-1">Deposito</h5>
-                    <h5 *ngIf="info.type_transaction === 1" class="mb-1">Saque</h5>
-                    <h5 *ngIf="info.type_transaction === 2" class="mb-1">Transferência</h5>
-                    
+                    <h5 class="mb-1">
+                      {{ info.type_transaction === 0 ? 'Depósito' : info.type_transaction === 1 ? 'Saque' : info.type_transaction === 2 ? 'Transferência' : ''  }}
+                    </h5>
+
                     <small>{{ info.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
                   </div>
-                  <p class="mb-1">Valor depositado de {{ info.value | currency : 'BRL' }}</p>
+                  <p class="mb-1">
+                    Valor 
+                      {{ info.type_transaction === 0 ? 'depositado' : info.type_transaction === 1 ? 'sacado' : info.type_transaction === 2 ? 'transferido' : ''  }} 
+                    de 
+                      {{ info.value | currency : 'BRL' }}
+                  </p>
                 </div>
             </div>
         </div>

@@ -4,8 +4,8 @@ import { TypeTransactionInterface } from "../interfaces/TypeTransaction";
 import userRepository from "./user-repository";
 
 class TransacationRepository {
-    public async getTransactions(): Promise<TransactionInterface[]> {
-        return await Transaction.find().sort({$natural: -1}).limit(5);
+    public async getTransactions(id: string): Promise<TransactionInterface[]> {
+        return await Transaction.find({ user_id: id }).sort({$natural: -1}).limit(5);
     }
 
     public async createTransaction(data: TransactionInterface): Promise<TransactionInterface> {

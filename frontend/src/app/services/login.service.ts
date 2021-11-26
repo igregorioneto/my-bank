@@ -10,12 +10,9 @@ import { ServicesService } from './services.service';
 export class LoginService {
   private url = environment.url;
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly servicesService: ServicesService
-  ) { }
+  constructor(private readonly http: HttpClient) { }
 
-  public login(data: any): Observable<any> {
+  login(data: any): Observable<any> {
     return this.http.post<any>(`${this.url}/auth`, data);
   }
 }

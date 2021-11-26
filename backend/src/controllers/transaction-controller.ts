@@ -4,7 +4,10 @@ import authService from '../services/auth-service';
 
 class TransactionController {
     public async getTransactions(req: Request, res: Response): Promise<Response> {
-        const transaction = await transactionRepository.getTransactions();
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
+        const user_id_token = await authService.decodeToken(token);
+        const user_id = user_id_token.id;
+        const transaction = await transactionRepository.getTransactions(user_id);
         return res.status(200).send(transaction);
     }
 

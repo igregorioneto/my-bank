@@ -6,6 +6,7 @@ import { DepositDialogComponent } from './deposit-dialog/deposit-dialog.componen
 import { WithdrawDialogComponent } from './withdraw-dialog/withdraw-dialog.component';
 import { TransferDialogComponent } from './transfer-dialog/transfer-dialog.component';
 import { TransactionsService } from 'src/app/services/transactions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
     private readonly homeService: HomeService,
     private readonly servicesService: ServicesService,
     private readonly transactionService: TransactionsService,
+    private readonly router: Router,
     private readonly dialog: MatDialog
   ) { }
 
@@ -59,6 +61,7 @@ export class HomeComponent implements OnInit {
 
   close(): void {
     this.servicesService.remove();
+    this.router.navigate(['/login']);
   }
 
 }

@@ -8,7 +8,6 @@ import { GuardGuard } from './guard/guard.guard';
 const routes: Routes = [
   {
     path: 'login',
-    pathMatch: 'full',
     component: LoginComponent
   },
   {
