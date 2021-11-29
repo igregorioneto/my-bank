@@ -1,6 +1,6 @@
 .menu .navbar-light{
-    height: 100px;
 
+    background-color: rgb(54, 165, 40);
     img {
         width: 50px;
         height: 50px;
@@ -8,19 +8,56 @@
         margin-right: 30px;
     }
 
-    .name {
-        font-weight: bold;
-        text-transform: uppercase;
-        vertical-align: middle;
-        display: inline-block;
-        margin-top: 20px;
+    .navbar-brand {
+        .item {
+            color: rgb(20, 20, 20);
+        }
     }
 
-    .balance {
-        font-size: 16px;
-        margin-left: 80px;
-        display: block;
+    .close {
+        color:rgb(20, 20, 20);
     }
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 30px;
+
+    .card {
+        height: 10rem;
+        border: 2px solid rgb(46, 158, 31);
+        border-radius: 10px;
+        box-shadow: 20px 20px 10px #ccc;
+
+        .card-title {
+            display: flex;
+            font-size: 25px;
+
+            img {
+                width: 60px;
+                height: 60px;
+                margin-right: 20px;
+            }
+
+            span {
+                vertical-align: middle;
+            }
+        }
+
+        .balance {
+            display: block;
+            font-size: 40px;
+            font-weight: bold;
+            margin-left: 80px;
+        }
+
+        
+    }
+
 }
 
 .options {
@@ -28,12 +65,17 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
     .card-options {
         cursor: pointer;
         text-align: center;
         width: 25.25rem;
         height: 100px;
         margin: 50px auto;
+
+        border: 2px solid rgb(46, 158, 31);
+        border-radius: 10px;
+        box-shadow: 20px 20px 10px #ccc;
         h5 {
             font-size: 25px;
             margin-top: 15px;
@@ -47,6 +89,10 @@
     justify-content: center;
     align-items: center;
     margin: 50px 0 0 0;
+
+    .list-group {
+        border: 2px solid rgb(46, 158, 31);
+    }
 }
 
 .close {

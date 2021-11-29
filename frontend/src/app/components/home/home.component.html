@@ -1,12 +1,10 @@
 <div class="home">
     <div class="row menu">
         <div class="col">
-            <nav class="navbar navbar-light bg-light ">
+            <nav class="navbar navbar-light">
                 <div class="container-fluid">
                   <a class="navbar-brand">
-                    <img src="../../../assets/img/logo.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    <span class="name">{{ name }}</span>
-                    <span class="balance"> seu saldo é de {{ balance | currency : 'BRL' }}</span>
+                    <a class="nav-link item" href="/home">Home</a>
                   </a>
                   <a class="nav-link close" (click)="close()">Sair</a>
                 </div>
@@ -14,22 +12,36 @@
         </div>
     </div>
 
+    <div class="row info">
+        <div class="col-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <span class="card-title">
+                        <img src="../../../assets/img/logo.jpg" class="d-inline-block align-text-top">
+                        <span>{{ name }}</span>
+                    </span>
+                    <span class="balance">{{ balance | currency : 'BRL' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row options">
         <div class="col-8">
             <div class="row">
-                <div (click)="depositDialog()" class="card text-white bg-success mb-3 card-options">
+                <div (click)="depositDialog()" class="card mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Deposito</h5>
                     </div>
                 </div>
 
-                <div (click)="withdrawDialog()" class="card text-white bg-info mb-3 card-options">
+                <div (click)="withdrawDialog()" class="card mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Saque</h5>
                     </div>
                 </div>
 
-                <div (click)="transferDialog()" class="card text-white bg-dark mb-3 card-options">
+                <div (click)="transferDialog()" class="card mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Transferência</h5>
                     </div>
