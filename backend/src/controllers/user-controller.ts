@@ -58,7 +58,7 @@ class UserController {
 
     public async create(req: Request, res: Response): Promise<Response> {
         try {
-            const { name, email, password } = req.body;
+            const { name, email, password, roles } = req.body;
             const user = await UserRepository.getUserEmail(email);
             if (user) {
                 return res.status(404).send({
@@ -72,7 +72,8 @@ class UserController {
             const newUser = await UserRepository.create({
                 name,
                 email,
-                password: passwordHash
+                password: passwordHash,
+                roles: [roles]
             });
     
             return res.status(201).send(newUser);

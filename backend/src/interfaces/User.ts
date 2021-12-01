@@ -3,5 +3,6 @@ export interface UserInterface {
     name?: string,
     email?: string,
     password?: string,
-    balance?: number
+    balance?: number,
+    roles?: string[],
 }

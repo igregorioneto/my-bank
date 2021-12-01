@@ -18,7 +18,12 @@ const schema = new Schema({
         type: Number,
         default: 0,
         require: false
-    }
+    },
+    roles: [{
+        type: String,
+        required: true,
+        default: ['client']
+    }]
 });
 
 export const User: Model<UserInterface> = model<UserInterface>('User', schema);

@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DepositDialogComponent } from './components/home/deposit-dialog/deposit-dialog.component';
 import { WithdrawDialogComponent } from './components/home/withdraw-dialog/withdraw-dialog.component';
 import { TransferDialogComponent } from './components/home/transfer-dialog/transfer-dialog.component';
+import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 
 
 
@@ -29,7 +30,8 @@ import { TransferDialogComponent } from './components/home/transfer-dialog/trans
     HomeComponent,
     DepositDialogComponent,
     WithdrawDialogComponent,
-    TransferDialogComponent
+    TransferDialogComponent,
+    HomeAdminComponent
   ],
   imports: [
     BrowserModule,

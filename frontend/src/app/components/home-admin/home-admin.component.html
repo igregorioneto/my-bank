@@ -1,0 +1,33 @@
+<div class="admin">
+    <div class="row menu">
+        <div class="col">
+            <nav class="navbar navbar-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand">
+                    <a class="nav-link item" href="/admin"> {{ logged }} - Admin </a>
+                  </a>
+                  <a class="nav-link close" (click)="close()">Sair</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row users">
+        <div class="col-8">
+            <div class="list-group">
+                <div *ngFor="let user of users" class="list-group-item list-group-item-action" aria-current="true">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                      {{user.name | uppercase}}
+                    </h5>
+
+                    <small>
+                        <button type="button" class="btn btn-primary">Editar</button>
+                        <button type="button" class="btn btn-danger">Deletar</button>
+                    </small>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
