@@ -85,6 +85,67 @@ class UserController {
         
     }
 
+    public async updateAdmin(req: Request, res: Response): Promise<Response> {
+        try {
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            let userId;
+            await authService.decodeToken(token).then(data => userId = data.id);
+
+            const { name, email, roles, actived } = req.body;
+            const user = await UserRepository.getUserEmail(email);
+            if (!user) {
+                return res.status(404).send({
+                    error: 'Usuário não existe!'
+                });
+            }
+
+            const updateUser = await UserRepository.updateAdmin(userId,{
+                name,
+                email,
+                roles: [roles],
+                actived
+            });
+
+            if (!updateUser) {
+                return res.status(404).send({
+                    error: 'Erro ao atualizar usuário!'
+                });
+            }
+    
+            return res.status(201).send(updateUser);
+        } catch(error) {
+            return res.status(404).send({
+                error: 'Erro ao realizar o cadastro do usuário'
+            });
+        }
+        
+    }
+
+    public async delete(req: Request, res: Response): Promise<Response> {
+        try {
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            let userId;
+            await authService.decodeToken(token).then(data => userId = data.id);
+            
+            if (!userId) {
+                return res.status(404).send({
+                    error: 'Usuário não encontrado'
+                });
+            }
+
+            await UserRepository.delete(userId);
+
+            return res.status(200).send({
+                message: 'Usuário deletado com sucesso!'
+            });
+
+        } catch(error) {
+            return res.status(404).send({
+                error: 'Erro ao deletar o usuário'
+            });
+        }        
+    }
+
     public async authenticate(req: Request, res: Response): Promise<Response> {
         try {
             const { email, password } = req.body;

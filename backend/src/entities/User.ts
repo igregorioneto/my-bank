@@ -23,7 +23,12 @@ const schema = new Schema({
         type: String,
         required: true,
         default: ['client']
-    }]
+    }],
+    actived: {
+        type: Boolean,
+        required: true,
+        default: true
+    }
 });
 
 export const User: Model<UserInterface> = model<UserInterface>('User', schema);

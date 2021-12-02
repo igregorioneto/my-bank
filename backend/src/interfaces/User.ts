@@ -5,4 +5,5 @@ export interface UserInterface {
     password?: string,
     balance?: number,
     roles?: string[],
+    actived?: boolean
 }

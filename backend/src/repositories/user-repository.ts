@@ -24,7 +24,7 @@ class UserRepository {
         return await user.save();
     }
 
-    public async update(id,data: UserInterface): Promise<UserInterface> {
+    public async update(id: string,data: UserInterface): Promise<UserInterface> {
         const { email, name, password, balance } = data;
         return await User.findByIdAndUpdate(id, {
             email,
@@ -32,6 +32,20 @@ class UserRepository {
             password,
             balance
         });
+    }
+
+    public async updateAdmin(id: string,data: UserInterface): Promise<UserInterface> {
+        const { email, name, roles, actived } = data;
+        return await User.findByIdAndUpdate(id, {
+            email,
+            name,
+            roles,
+            actived
+        });
+    }
+
+    public async delete(id: string): Promise<UserInterface> {
+        return await User.remove({ id:id });
     }
 
 }

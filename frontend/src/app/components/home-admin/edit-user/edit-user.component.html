@@ -1,0 +1,49 @@
+<div class="col-12 editUser">
+    <div class="row">
+        <h3 class="mb-3 title">Edição do usuário:</h3>
+    </div>
+
+    <div class="row">
+        <form class="formulario" [formGroup]="editForm" (ngSubmit)="editValue(editForm.value)">
+            <div class="mb-3">
+                <input formControlName="name" type="text" class="form-control" placeholder="Nome do usuário">
+                <!-- <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="editForm.get('value')?.hasError(validation.type) && (editForm.get('value')?.dirty || editForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div> -->
+
+                <input formControlName="email" type="text" class="form-control" placeholder="Email do usuário">
+                <!-- <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="depositForm.get('value')?.hasError(validation.type) && (depositForm.get('value')?.dirty || depositForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div> -->
+
+                <input formControlName="roles" type="text" class="form-control" placeholder="Papeis do usuário">
+                <!-- <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="depositForm.get('value')?.hasError(validation.type) && (depositForm.get('value')?.dirty || depositForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div> -->
+
+                <input formControlName="actived" type="text" class="form-control" placeholder="Status do usuário">
+                <!-- <div class="errors" *ngFor="let validation of validationMessages.value">
+                    <div *ngIf="depositForm.get('value')?.hasError(validation.type) && (depositForm.get('value')?.dirty || depositForm.get('value')?.touched)">
+                        <span class="message-error">{{validation.message}}</span>
+                    </div>
+                </div> -->
+            </div>
+        </form>
+    </div>
+    
+    <div class="row">
+        <button (click)="onNoClick()" type="submit" class="btn btn-secondary">
+            Sair
+        </button>
+        
+        <button [disabled]="!editForm.valid" (click)="editValue(editForm.value)" type="submit" class="btn btn-primary">
+            Depositar
+        </button>
+    </div>
+</div>

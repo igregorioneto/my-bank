@@ -7,6 +7,11 @@ const routes = Router();
 routes.get('/', authService.authorize, UserController.getUsers);
 routes.get('/logged', authService.authorize, UserController.getUsersLogger);
 routes.get('/transfer', authService.authorize, UserController.getUsersTransfer);
+
 routes.post('/', UserController.create);
+
+routes.put('/', authService.authorize, UserController.updateAdmin);
+
+routes.delete('/',authService.authorize, UserController.delete);
 
 export default routes;

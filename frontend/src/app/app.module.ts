@@ -19,6 +19,7 @@ import { DepositDialogComponent } from './components/home/deposit-dialog/deposit
 import { WithdrawDialogComponent } from './components/home/withdraw-dialog/withdraw-dialog.component';
 import { TransferDialogComponent } from './components/home/transfer-dialog/transfer-dialog.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
+import { EditUserComponent } from './components/home-admin/edit-user/edit-user.component';
 
 
 
@@ -31,7 +32,8 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
     DepositDialogComponent,
     WithdrawDialogComponent,
     TransferDialogComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
