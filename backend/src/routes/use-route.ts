@@ -10,8 +10,8 @@ routes.get('/transfer', authService.authorize, UserController.getUsersTransfer);
 
 routes.post('/', UserController.create);
 
-routes.put('/', authService.authorize, UserController.updateAdmin);
+routes.put('/:id', authService.authorize, UserController.updateAdmin);
 
-routes.delete('/',authService.authorize, UserController.delete);
+routes.delete('/:id',authService.authorize, UserController.delete);
 
 export default routes;

@@ -73,7 +73,7 @@ class UserController {
                 name,
                 email,
                 password: passwordHash,
-                roles: [roles]
+                roles
             });
     
             return res.status(201).send(newUser);
@@ -87,12 +87,11 @@ class UserController {
 
     public async updateAdmin(req: Request, res: Response): Promise<Response> {
         try {
-            const token = req.body.token || req.query.token || req.headers['x-access-token'];
-            let userId;
-            await authService.decodeToken(token).then(data => userId = data.id);
 
-            const { name, email, roles, actived } = req.body;
-            const user = await UserRepository.getUserEmail(email);
+            const userId = req.params.id;
+
+            const { name, email, actived } = req.body;
+            const user = await UserRepository.getUserById(userId);
             if (!user) {
                 return res.status(404).send({
                     error: 'Usuário não existe!'
@@ -102,7 +101,6 @@ class UserController {
             const updateUser = await UserRepository.updateAdmin(userId,{
                 name,
                 email,
-                roles: [roles],
                 actived
             });
 
@@ -123,13 +121,12 @@ class UserController {
 
     public async delete(req: Request, res: Response): Promise<Response> {
         try {
-            const token = req.body.token || req.query.token || req.headers['x-access-token'];
-            let userId;
-            await authService.decodeToken(token).then(data => userId = data.id);
-            
-            if (!userId) {
+            const userId = req.params.id;
+
+            const user = await UserRepository.getUserById(userId);
+            if (!user) {
                 return res.status(404).send({
-                    error: 'Usuário não encontrado'
+                    error: 'Usuário não encontrado!'
                 });
             }
 

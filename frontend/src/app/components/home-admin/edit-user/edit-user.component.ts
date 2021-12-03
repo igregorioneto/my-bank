@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,6 +14,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+  user: any = {}
+
   validationMessages = {
     name: [
       {
@@ -33,6 +36,7 @@ export class EditUserComponent implements OnInit {
   editForm: FormGroup;
   constructor(
     private readonly formBuilder: FormBuilder,
+    private readonly adminService: AdminService,
     private readonly dialogRef: MatDialogRef<EditUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
@@ -41,7 +45,7 @@ export class EditUserComponent implements OnInit {
     this.editForm = this.formBuilder.group(
       {
         name: new FormControl(
-          '',
+          this.data.name,
           Validators.compose([
             Validators.required,
             Validators.minLength(5),
@@ -49,15 +53,7 @@ export class EditUserComponent implements OnInit {
           ])
         ),
         email: new FormControl(
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(1000)
-          ])
-        ),
-        roles: new FormControl(
-          '',
+          this.data.email,
           Validators.compose([
             Validators.required,
             Validators.minLength(5),
@@ -65,15 +61,16 @@ export class EditUserComponent implements OnInit {
           ])
         ),
         actived: new FormControl(
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(1000)
-          ])
+          this.data.actived,
         ),
       }
     ); 
+  }
+
+  changeTransfer(event: any) {
+    this.editForm.get('actived')?.setValue(event.target.value, {
+      onlySelf: true
+    })
   }
 
   onNoClick(): void {
@@ -82,6 +79,7 @@ export class EditUserComponent implements OnInit {
 
   editValue(edit: any) {
     console.log(edit);
+    this.adminService.updateUser(this.data.id, edit).subscribe(() => {});
   }
 
 }

@@ -28,13 +28,14 @@ export class HomeAdminComponent implements OnInit {
     this.adminService.getUsers().subscribe(u => this.users = u);
   }
 
-  deleteUser(): void {
-    this.adminService.deleteUser().subscribe(() => {});
+  deleteUser(id: any) {
+    this.adminService.deleteUser(id).subscribe(() => {});
   }
 
-  updateUser(): void {
-    const dialogRef = this.dialog.open(EditUserComponent, {
-      width: '35rem'
+  async updateUser(data: any) {
+    const dialogRef = await this.dialog.open(EditUserComponent, {
+      width: '35rem',
+      data: { name: data.name, email: data.email, actived: data.actived, id: data._id }
     });
   }
 

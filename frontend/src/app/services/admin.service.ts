@@ -15,11 +15,11 @@ export class AdminService {
     return this.http.get<any[]>(`${this.url}/user`);
   }
 
-  public updateUser(data: any): Observable<any> {
-    return this.http.put<any>(`${this.url}/user`, data);
+  public updateUser(id: any,data: any): Observable<any> {
+    return this.http.put<any>(`${this.url}/user/${id}`, data);
   }
 
-  public deleteUser(): Observable<any> {
-    return this.http.delete<any>(`${this.url}/user`);
+  public deleteUser(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.url}/user/${id}`);
   }
 }

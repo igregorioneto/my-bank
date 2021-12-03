@@ -44,8 +44,8 @@ class UserRepository {
         });
     }
 
-    public async delete(id: string): Promise<UserInterface> {
-        return await User.remove({ id:id });
+    public async delete(id: any): Promise<UserInterface> {
+        return await User.findByIdAndRemove(id);
     }
 
 }

@@ -19,11 +19,11 @@ const schema = new Schema({
         default: 0,
         require: false
     },
-    roles: [{
+    roles: {
         type: String,
         required: true,
-        default: ['client']
-    }],
+        default: 'client'
+    },
     actived: {
         type: Boolean,
         required: true,
