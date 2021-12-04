@@ -11,4 +11,9 @@ const corsOptions = {
     optionSuccessStatus: 200,
 }
 
-export { connectionString, corsOptions };
+const redis = {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT
+}
+
+export { connectionString, corsOptions, redis };

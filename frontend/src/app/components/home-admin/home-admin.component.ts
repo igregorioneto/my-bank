@@ -39,6 +39,10 @@ export class HomeAdminComponent implements OnInit {
     });
   }
 
+  csvImportChange(event: any) {
+    console.log(event.target.files[0]);
+  }
+
   close(): void {
     this.servicesService.remove();
     this.router.navigate(['/login']);

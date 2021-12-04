@@ -9,6 +9,9 @@
     }
 
     .navbar-brand {
+        button {
+            border-radius: 10px;
+        }
         .item {
             color: rgb(255, 255, 255);
         }
@@ -16,6 +19,13 @@
 
     .close {
         color:rgb(253, 253, 253);
+    }
+
+    .buttons {
+        display: flex;
+        .button-upload {
+            margin-right: 15px;
+        }
     }
 }
 

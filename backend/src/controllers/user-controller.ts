@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 import * as bcrypt from 'bcrypt';
 import  UserRepository  from '../repositories/user-repository';
 import authService from '../services/auth-service';
+import Queue from '../jobs/Queue';
+import * as readline from 'readline';
+import { Readable } from 'stream';
 
 class UserController {
     public async getUsers(req: Request, res: Response): Promise<Response> {
@@ -77,6 +80,40 @@ class UserController {
             });
     
             return res.status(201).send(newUser);
+        } catch(error) {
+            return res.status(404).send({
+                error: 'Erro ao realizar o cadastro do usuário'
+            });
+        }
+        
+    }
+
+    public async userCreateJobs(req: Request, res: Response): Promise<Response> {
+        try {
+            const readableFile = new Readable();
+            readableFile.push(req.body);
+            const { name, email, password, roles } = req.body;
+            const user = await UserRepository.getUserEmail(email);
+            if (user) {
+                return res.status(404).send({
+                    message: 'Usuário já existe!'
+                });
+            }
+
+            
+            const salt = await bcrypt.genSalt(10);
+            const passwordHash = await bcrypt.hash(password, salt);
+
+            const newUserJobs = {
+                name, 
+                email, 
+                password: passwordHash, 
+                roles
+            }
+
+            await Queue.add({ user });
+    
+            return res.status(201).send(newUserJobs);
         } catch(error) {
             return res.status(404).send({
                 error: 'Erro ao realizar o cadastro do usuário'

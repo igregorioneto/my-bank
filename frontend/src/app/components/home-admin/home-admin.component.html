@@ -6,7 +6,17 @@
                   <a class="navbar-brand">
                     <a class="nav-link item" href="/admin"> {{ logged }} - Admin </a>
                   </a>
-                  <a class="nav-link close" (click)="close()">Sair</a>
+                  <a class="navbar-brand buttons">
+                    <div class="button-upload">
+                      <input #csvImport hidden="true" type="file" onclick="this.value=null" (change)="csvImportChange($event)" accept=".csv" />
+                      <button mat-flat-button (click)="csvImport.click()">Upload de Arquivo</button>
+                    </div>
+
+                    <div class="button-close">
+                      <a class="nav-link close" (click)="close()">Sair</a>
+                    </div>
+                    
+                  </a>
                 </div>
             </nav>
         </div>
