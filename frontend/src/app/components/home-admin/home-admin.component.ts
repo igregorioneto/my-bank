@@ -5,6 +5,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { HomeService } from 'src/app/services/home.service';
 import { ServicesService } from 'src/app/services/services.service';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { UploadArquivoComponent } from './upload-arquivo/upload-arquivo.component';
 
 @Component({
   selector: 'app-home-admin',
@@ -39,8 +40,12 @@ export class HomeAdminComponent implements OnInit {
     });
   }
 
-  csvImportChange(event: any) {
-    console.log(event.target.files[0]);
+  async csvImportChange() {
+    const dialogRef = await this.dialog.open(UploadArquivoComponent, {
+      width: '35rem'
+    });
+    // console.log(event.target.files[0]);
+    // this.homeService.usersCreateJob(event.target.files[0]).subscribe(() => {})
   }
 
   close(): void {

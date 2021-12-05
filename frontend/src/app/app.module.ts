@@ -20,6 +20,7 @@ import { WithdrawDialogComponent } from './components/home/withdraw-dialog/withd
 import { TransferDialogComponent } from './components/home/transfer-dialog/transfer-dialog.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { EditUserComponent } from './components/home-admin/edit-user/edit-user.component';
+import { UploadArquivoComponent } from './components/home-admin/upload-arquivo/upload-arquivo.component';
 
 
 
@@ -33,7 +34,8 @@ import { EditUserComponent } from './components/home-admin/edit-user/edit-user.c
     WithdrawDialogComponent,
     TransferDialogComponent,
     HomeAdminComponent,
-    EditUserComponent
+    EditUserComponent,
+    UploadArquivoComponent
   ],
   imports: [
     BrowserModule,

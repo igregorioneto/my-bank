@@ -18,4 +18,8 @@ export class HomeService {
   public userLogged(): Observable<any> {
     return this.http.get<any>(`${this.url}/user/logged`);
   }
+
+  public usersCreateJob(file: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/user/admin/create`,file);
+  }
 }

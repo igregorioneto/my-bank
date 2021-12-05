@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+import multer from "multer";
 dotenv.config();
 
 const dbUser = process.env.DB_USER;
@@ -16,4 +17,6 @@ const redis = {
     port: process.env.REDIS_PORT
 }
 
-export { connectionString, corsOptions, redis };
+const multerConfig = multer();
+
+export { connectionString, corsOptions, redis, multerConfig };

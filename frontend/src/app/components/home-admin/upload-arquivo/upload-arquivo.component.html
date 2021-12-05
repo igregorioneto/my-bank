@@ -1,0 +1,14 @@
+<div class="button-upload">
+    <input #csvImport hidden="true" name="file" type="file" onclick="this.value=null" (change)="csvImportChange($event)" accept=".csv" />
+    <button mat-flat-button (click)="csvImport.click()">Upload de Arquivo</button>
+</div>
+
+<div class="row">
+    <button (click)="onNoClick()" type="submit" class="btn btn-secondary">
+        Sair
+    </button>
+    
+    <button (click)="usersCreateCsv()" type="submit" class="btn btn-primary">
+        Salvar
+    </button>
+</div>
