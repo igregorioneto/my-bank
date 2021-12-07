@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: HomeAdminComponent,
-    // canActivate: [ GuardGuard ],
+    canActivate: [ GuardGuard ],
     pathMatch: 'full'
   },
   {

@@ -18,7 +18,8 @@
                 <div class="card-body">
                     <span class="card-title">
                         <img src="../../../assets/img/logo.jpg" class="d-inline-block align-text-top">
-                        <span>{{ name }}</span>
+                        <span>{{ name }} - </span>
+                        <span class="status">Status: {{ status ? 'Ativado' : 'Desativado' }}</span>
                     </span>
                     <span class="balance">{{ balance | currency : 'BRL' }}</span>
                 </div>
@@ -26,7 +27,7 @@
         </div>
     </div>
 
-    <div class="row options">
+    <div class="row options" *ngIf="status">
         <div class="col-8">
             <div class="row">
                 <div (click)="depositDialog()" class="card mb-3 card-options">
@@ -50,7 +51,7 @@
         </div>
     </div>
 
-    <div class="row transactions">
+    <div class="row transactions" *ngIf="status">
         <div class="col-8">
             <div class="list-group">
                 <div *ngFor="let info of transactions" class="list-group-item list-group-item-action" aria-current="true">

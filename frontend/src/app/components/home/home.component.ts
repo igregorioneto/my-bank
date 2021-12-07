@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   name = '';
   balance = 0;
   transactions: any[] = [];
+  status = '';
 
   constructor(
     private readonly homeService: HomeService,
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
         async data => {
           this.name = data.name;
           this.balance = data.balance;
+          this.status = data.actived;
         });
 
     this.transactionService.getTransactions()

@@ -26,7 +26,9 @@ export class HomeAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.homeService.userLogged().subscribe(l => this.logged = l.name);
-    this.adminService.getUsers().subscribe(u => this.users = u);
+    this.adminService.getUsers().subscribe(u => {
+      this.users = u
+    });
   }
 
   deleteUser(id: any) {

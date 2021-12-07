@@ -8,7 +8,8 @@ import { HomeService } from 'src/app/services/home.service';
   styleUrls: ['./upload-arquivo.component.scss']
 })
 export class UploadArquivoComponent implements OnInit {
-  file: any;
+  file: Set<File>;
+
   constructor(
     private readonly homeService: HomeService,
     private readonly dialogRef: MatDialogRef<UploadArquivoComponent>,
@@ -19,16 +20,20 @@ export class UploadArquivoComponent implements OnInit {
   }
 
   async csvImportChange(event: any) {
-    this.file = event.target.files[0];
+    const selectedFile = event.target.files;
+    this.file = new Set();
+    for (let i = 0; i< selectedFile.length; i++) {
+      this.file.add(selectedFile[i]);
+    }
   }
 
   usersCreateCsv() {
-    console.log(this.file)
-    this.homeService.usersCreateJob({ file: this.file }).subscribe(() => {})
+    this.homeService.usersCreateJob(this.file).subscribe(() => {});
+    this.dialogRef.close();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
+  } 
 
 }

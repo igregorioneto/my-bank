@@ -23,7 +23,7 @@ class UserRepository {
         const user = new User(data);
         return await user.save();
     }
-
+    
     public async update(id: string,data: UserInterface): Promise<UserInterface> {
         const { email, name, password, balance } = data;
         return await User.findByIdAndUpdate(id, {

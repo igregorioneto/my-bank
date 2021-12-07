@@ -22,6 +22,10 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
 import { EditUserComponent } from './components/home-admin/edit-user/edit-user.component';
 import { UploadArquivoComponent } from './components/home-admin/upload-arquivo/upload-arquivo.component';
 
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -45,6 +49,9 @@ import { UploadArquivoComponent } from './components/home-admin/upload-arquivo/u
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatPaginatorModule,
+    TableModule,
+    ButtonModule,
     Interceptor
   ],
   providers: [

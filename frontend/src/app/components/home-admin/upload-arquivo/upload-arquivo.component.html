@@ -8,7 +8,7 @@
         Sair
     </button>
     
-    <button (click)="usersCreateCsv()" type="submit" class="btn btn-primary">
-        Salvar
+    <button [disabled]="!file" (click)="usersCreateCsv()" type="submit" class="btn btn-primary">
+        Upload
     </button>
 </div>

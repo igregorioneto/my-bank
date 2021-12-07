@@ -118,19 +118,33 @@ class UserController {
                 user.password = passwordHash;
                 user.roles = userSplit[3];
 
-                usersCsv.push({
+                // usersCsv.push({
+                //     name: userSplit[0],
+                //     email: userSplit[1],
+                //     password: passwordHash,
+                //     roles: userSplit[3]
+                // });
+
+                const newUser = {
                     name: userSplit[0],
                     email: userSplit[1],
                     password: passwordHash,
-                    roles: userSplit[3],
-                });
+                    roles: userSplit[3]
+                }
+
+                await UserRepository.create(user);
+
+                // await Queue.add('UserJobs', {newUser});
             }
             
-            for await (let user of usersCsv) {
-                await Queue.add('UserJobs', user);
-            }
-            
-            return res.status(201).send();
+            // for await (let user of usersCsv) {
+            //     // await UserRepository.create(user);
+            //     console.log(user)
+            //     await Queue.add('UserJobs', user);
+            // }
+            return res.status(200).send({
+                message: 'Cadastro de usuário em massa realizado com sucesso!'
+            });
         } catch(error) {
             return res.status(404).send({
                 error: 'Erro ao realizar o cadastro do usuário'
