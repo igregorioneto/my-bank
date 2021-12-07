@@ -2,9 +2,10 @@ import { Request, Response } from 'express';
 import * as bcrypt from 'bcrypt';
 import  UserRepository  from '../repositories/user-repository';
 import authService from '../services/auth-service';
-import Queue from '../jobs/Queue';
+import Queue from '../lib/Queue';
 import * as readline from 'readline';
 import { Readable } from 'stream';
+import { User } from '../entities/User';
 
 class UserController {
     public async getUsers(req: Request, res: Response): Promise<Response> {
@@ -90,29 +91,44 @@ class UserController {
 
     public async userCreateJobs(req: Request, res: Response): Promise<Response> {
         try {
-            console.log(req.body.file);
-            // const readableFile = new Readable();
-            // readableFile.push(req.body);
-            // const { name, email, password, roles } = req.body;
-            // const user = await UserRepository.getUserEmail(email);
-            // if (user) {
-            //     return res.status(404).send({
-            //         message: 'Usuário já existe!'
-            //     });
-            // }
-
+            const file = req.file;
+            const readableFile = new Readable();
+            readableFile.push(file.buffer);
+            readableFile.push(null);
             
-            // const salt = await bcrypt.genSalt(10);
-            // const passwordHash = await bcrypt.hash(password, salt);
+            const users = readline.createInterface({
+                input: readableFile
+            })
 
-            // const newUserJobs = {
-            //     name, 
-            //     email, 
-            //     password: passwordHash, 
-            //     roles
-            // }
+            const usersCsv = [];
+            for await (let line of users) {
+                const user = new User();
+                let userSplit;
+                if (line.indexOf(';') === -1) {
+                    userSplit = line.split(',');
+                } else {
+                    userSplit = line.split(';');
+                }
 
-            // await Queue.add({ user });
+                const salt = await bcrypt.genSalt(10);
+                const passwordHash = await bcrypt.hash(userSplit[2], salt);
+
+                user.name = userSplit[0];
+                user.email = userSplit[1];
+                user.password = passwordHash;
+                user.roles = userSplit[3];
+
+                usersCsv.push({
+                    name: userSplit[0],
+                    email: userSplit[1],
+                    password: passwordHash,
+                    roles: userSplit[3],
+                });
+            }
+            
+            for await (let user of usersCsv) {
+                await Queue.add('UserJobs', user);
+            }
             
             return res.status(201).send();
         } catch(error) {
