@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
-import { HomeComponent } from './components/home/home.component';
+// import { HomeComponent } from './components/home/home.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,19 +15,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Interceptor } from './interceptor/token.interceptor.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DepositDialogComponent } from './components/home/deposit-dialog/deposit-dialog.component';
-import { WithdrawDialogComponent } from './components/home/withdraw-dialog/withdraw-dialog.component';
-import { TransferDialogComponent } from './components/home/transfer-dialog/transfer-dialog.component';
-import { HomeAdminComponent } from './components/home-admin/home-admin.component';
-import { EditUserComponent } from './components/home-admin/edit-user/edit-user.component';
-import { UploadArquivoComponent } from './components/home-admin/upload-arquivo/upload-arquivo.component';
+// import { DepositDialogComponent } from './components/home/deposit-dialog/deposit-dialog.component';
+// import { WithdrawDialogComponent } from './components/home/withdraw-dialog/withdraw-dialog.component';
+// import { TransferDialogComponent } from './components/home/transfer-dialog/transfer-dialog.component';
+// import { HomeAdminComponent } from './components/home-admin/home-admin.component';
+// import { EditUserComponent } from './components/home-admin/edit-user/edit-user.component';
+// import { UploadArquivoComponent } from './components/home-admin/upload-arquivo/upload-arquivo.component';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
+// import { HomeModule } from './components/home/home.module';
+
 import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
+import { CommonModule } from '@angular/common';
 
 const ngxLoadingXConfig: NgxLoadingXConfig = {
   show: false,
@@ -49,15 +52,16 @@ const ngxLoadingXConfig: NgxLoadingXConfig = {
     AppComponent,
     LoginComponent,
     CadastroComponent,
-    HomeComponent,
-    DepositDialogComponent,
-    WithdrawDialogComponent,
-    TransferDialogComponent,
-    HomeAdminComponent,
-    EditUserComponent,
-    UploadArquivoComponent
+    // HomeComponent,
+    // DepositDialogComponent,
+    // WithdrawDialogComponent,
+    // TransferDialogComponent,
+    // HomeAdminComponent,
+    // EditUserComponent,
+    // UploadArquivoComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -68,6 +72,7 @@ const ngxLoadingXConfig: NgxLoadingXConfig = {
     MatPaginatorModule,
     TableModule,
     ButtonModule,
+    // HomeModule,
     NgxLoadingXModule.forRoot(ngxLoadingXConfig),
     Interceptor
   ],

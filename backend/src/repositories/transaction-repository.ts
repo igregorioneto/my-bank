@@ -8,6 +8,10 @@ class TransacationRepository {
         return await Transaction.find({ user_id: id }).sort({$natural: -1}).limit(5);
     }
 
+    public async getAllTransactions(id: string): Promise<TransactionInterface[]> {
+        return await Transaction.find({ user_id: id });
+    }
+
     public async createTransaction(data: TransactionInterface): Promise<TransactionInterface> {
         const transacation = new Transaction(data);
         return await transacation.save();

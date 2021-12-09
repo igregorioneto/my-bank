@@ -14,12 +14,13 @@ export class GuardGuard implements CanActivate {
     private readonly router: Router
     ) {}
 
-  canActivate() {
+  async canActivate() {
     let token = this.servicesService.retrive();
     if (token === '' || token === null || token === undefined) {
+      this.router.navigateByUrl('login', { replaceUrl: true });
       return false;
     } else {
-      this.homeService.userLogged()
+      await this.homeService.userLogged()
       .subscribe(
         async data => {
           if (data.roles === 'admin') {
