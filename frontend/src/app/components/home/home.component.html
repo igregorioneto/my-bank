@@ -36,13 +36,13 @@
                     </div>
                 </div>
 
-                <div (click)="withdrawDialog()" class="card mb-3 card-options">
+                <div *ngIf="balance > 0" (click)="withdrawDialog()" class="card mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Saque</h5>
                     </div>
                 </div>
 
-                <div (click)="transferDialog()" class="card mb-3 card-options">
+                <div *ngIf="balance > 0" (click)="transferDialog()" class="card mb-3 card-options">
                     <div class="card-body">
                         <h5 class="card-title">Transferência</h5>
                     </div>
@@ -73,3 +73,5 @@
         </div>
     </div>
 </div>
+
+<ngx-loading-x [show]="load"></ngx-loading-x>

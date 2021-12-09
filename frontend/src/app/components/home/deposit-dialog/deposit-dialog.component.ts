@@ -14,7 +14,7 @@ import { TransactionsService } from 'src/app/services/transactions.service';
   styleUrls: ['./deposit-dialog.component.scss']
 })
 export class DepositDialogComponent implements OnInit {
-
+  public load = false;
   validationMessages = {
     value: [
       {
@@ -68,11 +68,21 @@ export class DepositDialogComponent implements OnInit {
       value
     }).subscribe(
       (data) => { 
-        console.log(data)
         this.dialogRef.close();
+      },
+      (err) => {},
+      () => {
+        window.location.reload();
       }
     );
-    console.log(deposit);
+  }
+
+  loading() {
+    this.load = true;
+
+    setTimeout(() => {
+        this.load = false
+    }, 10)
   }
 
 }

@@ -28,8 +28,12 @@ export class UploadArquivoComponent implements OnInit {
   }
 
   usersCreateCsv() {
-    this.homeService.usersCreateJob(this.file).subscribe(() => {});
-    this.dialogRef.close();
+    this.homeService.usersCreateJob(this.file).subscribe(
+      () => {
+        this.dialogRef.close();
+        window.location.reload();
+      },
+    );
   }
 
   onNoClick(): void {

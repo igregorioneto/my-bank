@@ -102,7 +102,6 @@ class UserController {
 
             const usersCsv = [];
             for await (let line of users) {
-                const user = new User();
                 let userSplit;
                 if (line.indexOf(';') === -1) {
                     userSplit = line.split(',');
@@ -113,35 +112,27 @@ class UserController {
                 const salt = await bcrypt.genSalt(10);
                 const passwordHash = await bcrypt.hash(userSplit[2], salt);
 
-                user.name = userSplit[0];
-                user.email = userSplit[1];
-                user.password = passwordHash;
-                user.roles = userSplit[3];
-
-                // usersCsv.push({
-                //     name: userSplit[0],
-                //     email: userSplit[1],
-                //     password: passwordHash,
-                //     roles: userSplit[3]
-                // });
-
-                const newUser = {
+                usersCsv.push({
                     name: userSplit[0],
                     email: userSplit[1],
                     password: passwordHash,
                     roles: userSplit[3]
-                }
+                });
 
-                await UserRepository.create(user);
-
-                // await Queue.add('UserJobs', {newUser});
             }
             
-            // for await (let user of usersCsv) {
-            //     // await UserRepository.create(user);
-            //     console.log(user)
-            //     await Queue.add('UserJobs', user);
-            // }
+            for await (let user of usersCsv) {
+                const verifyUser = await UserRepository.getUserEmail(user.email);
+                if (verifyUser) {
+                    return res.status(404).send({
+                        message: 'Usuário já existe!'
+                    });
+                }
+                await UserRepository.create(user);
+                // console.log(user)
+                // await Queue.add('UserJobs', user);
+            }
+
             return res.status(200).send({
                 message: 'Cadastro de usuário em massa realizado com sucesso!'
             });

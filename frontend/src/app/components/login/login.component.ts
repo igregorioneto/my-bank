@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public load = false;
 
   validationMessages = {
     email: [
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.loading();
     this.loginForm = this.formBuilder.group(
       {
         email: new FormControl(
@@ -88,10 +90,8 @@ export class LoginComponent implements OnInit {
         this.servicesService.store(data.token);
         this.snackMessage('Bem vindo!', 'blue-snackbar');
         this.router.navigate(['/home']);
-        console.log(data);
       },
       (error) => {
-        console.log(error);
         this.snackMessage(error.error.error, 'red-snackbar');
       }
     );
@@ -105,5 +105,14 @@ export class LoginComponent implements OnInit {
       panelClass: [classValue, 'login-snackbar'],
     });
   }
+
+  loading() {
+    this.load = true;
+
+    setTimeout(() => {
+        this.load = false
+    }, 1000)
+  }
+
 
 }

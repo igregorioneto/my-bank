@@ -27,6 +27,22 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
+import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
+
+const ngxLoadingXConfig: NgxLoadingXConfig = {
+  show: false,
+  bgBlur: 2,
+  bgColor: 'rgba(40, 40, 40, 0.5)',
+  bgOpacity: 5,
+  bgLogoUrl: '',
+  bgLogoUrlPosition: POSITION.topLeft,
+  bgLogoUrlSize: 100,
+  spinnerType: SPINNER.wanderingCubes,
+  spinnerSize: 120,
+  spinnerColor: 'rgb(46, 158, 31)',
+  spinnerPosition: POSITION.centerCenter,
+}
+
 
 @NgModule({
   declarations: [
@@ -52,6 +68,7 @@ import { ButtonModule } from 'primeng/button';
     MatPaginatorModule,
     TableModule,
     ButtonModule,
+    NgxLoadingXModule.forRoot(ngxLoadingXConfig),
     Interceptor
   ],
   providers: [

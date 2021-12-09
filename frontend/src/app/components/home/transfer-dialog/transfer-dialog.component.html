@@ -9,7 +9,7 @@
                 <select (change)="changeTransfer($event)" formControlName="transferUser" class="form-select">
                     <option value="" selected>Selecione um usuário para transferir um valor</option>
                     <option *ngFor="let transfer of selectTransfer" [value]="transfer._id">
-                        {{ transfer.name | uppercase }}
+                        {{ transfer.name  | uppercase }}
                     </option>
                 </select>
             </div>

@@ -45,7 +45,11 @@ export class TransferDialogComponent implements OnInit {
   ngOnInit(): void {
     this.transactionsService.getUsersTransfer()
       .subscribe((data) => {
-        this.selectTransfer = data;
+        data.forEach(user => {
+          if (user.roles === 'client') {
+            this.selectTransfer.push(user);
+          }
+        })
       });
     
     this.transferForm = this.formBuilder.group(
@@ -88,11 +92,14 @@ export class TransferDialogComponent implements OnInit {
       transfer_id
     }).subscribe(
       (data) => { 
-        console.log(data)
         this.dialogRef.close();
+      },
+      (err) => {},
+      () => {
+        this.dialogRef.close();
+        window.location.reload();
       }
     );
-    console.log(transfer);
   }
 
 }

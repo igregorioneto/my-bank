@@ -13,6 +13,7 @@ import { UploadArquivoComponent } from './upload-arquivo/upload-arquivo.componen
   styleUrls: ['./home-admin.component.scss']
 })
 export class HomeAdminComponent implements OnInit {
+  public load = false;
   logged = '';
   users: any[] = [];
 
@@ -25,14 +26,24 @@ export class HomeAdminComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.homeService.userLogged().subscribe(l => this.logged = l.name);
-    this.adminService.getUsers().subscribe(u => {
+    this.loading();
+    this.adminService.getUsers().subscribe( u => {
       this.users = u
+    });
+    this.loadingUser();
+  }
+
+  loadingUser() {
+    this.homeService.userLogged().subscribe(l => { 
+      this.logged = l.name 
     });
   }
 
   deleteUser(id: any) {
-    this.adminService.deleteUser(id).subscribe(() => {});
+    this.adminService.deleteUser(id).subscribe(() => {
+      window.location.reload();
+      this.loading(1000);
+    });
   }
 
   async updateUser(data: any) {
@@ -46,12 +57,18 @@ export class HomeAdminComponent implements OnInit {
     const dialogRef = await this.dialog.open(UploadArquivoComponent, {
       width: '35rem'
     });
-    // console.log(event.target.files[0]);
-    // this.homeService.usersCreateJob(event.target.files[0]).subscribe(() => {})
   }
 
   close(): void {
     this.servicesService.remove();
     this.router.navigate(['/login']);
+  }
+
+  loading(time: number = 5000) {
+    this.load = true;
+
+    setTimeout(() => {
+        this.load = false
+    }, time)
   }
 }

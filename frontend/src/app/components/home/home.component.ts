@@ -7,6 +7,9 @@ import { WithdrawDialogComponent } from './withdraw-dialog/withdraw-dialog.compo
 import { TransferDialogComponent } from './transfer-dialog/transfer-dialog.component';
 import { TransactionsService } from 'src/app/services/transactions.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +17,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public load = false;
   name = '';
   balance = 0;
   transactions: any[] = [];
   status = '';
+
+  user$: Observable<Object>;
 
   constructor(
     private readonly homeService: HomeService,
@@ -28,19 +34,24 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.homeService.userLogged()
-      .subscribe(
-        async data => {
-          this.name = data.name;
-          this.balance = data.balance;
-          this.status = data.actived;
-        });
+    this.loading();
+    this.loadingDados();
 
     this.transactionService.getTransactions()
         .subscribe(
           data => {
             this.transactions = data;
           });
+  }
+
+  loadingDados() {
+    this.homeService.userLogged().subscribe(
+      async data => {
+        this.name = data.name;
+        this.balance = data.balance;
+        this.status = data.actived;
+      });
+      
   }
 
   depositDialog(): void {
@@ -64,6 +75,14 @@ export class HomeComponent implements OnInit {
   close(): void {
     this.servicesService.remove();
     this.router.navigate(['/login']);
+  }
+
+  loading() {
+    this.load = true;
+
+    setTimeout(() => {
+        this.load = false
+    }, 1000)
   }
 
 }

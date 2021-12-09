@@ -78,8 +78,14 @@ export class EditUserComponent implements OnInit {
   }
 
   editValue(edit: any) {
-    this.adminService.updateUser(this.data.id, edit).subscribe(() => {});
-    this.dialogRef.close();
+    this.adminService.updateUser(this.data.id, edit).subscribe(
+      () => {},
+      (err) => {},
+      () => {
+        this.dialogRef.close();
+        window.location.reload();
+      }
+    );
   }
 
 }

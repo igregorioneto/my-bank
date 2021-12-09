@@ -66,12 +66,11 @@ export class WithdrawDialogComponent implements OnInit {
       type_transaction,
       value
     }).subscribe(
-      (data) => { 
-        console.log(data)
+      () => { 
         this.dialogRef.close();
+        window.location.reload();
       }
     );
-    console.log(withdraw);
   }
 
 

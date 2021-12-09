@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+  public load = false;
 
   validationMessages = {
     name: [
@@ -60,6 +61,7 @@ export class CadastroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loading();
     this.cadastroForm = this.formBuilder.group(
       {
         name: new FormControl(
@@ -101,7 +103,6 @@ export class CadastroComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       (error) => {
-        console.log(error);
         this.snackMessage(error.error.message, 'red-snackbar');
       }
     );
@@ -115,5 +116,13 @@ export class CadastroComponent implements OnInit {
       verticalPosition: 'top',
       panelClass: [classValue, 'login-snackbar'],
     });
+  }
+
+  loading() {
+    this.load = true;
+
+    setTimeout(() => {
+        this.load = false
+    }, 1000)
   }
 }
