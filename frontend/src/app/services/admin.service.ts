@@ -15,6 +15,10 @@ export class AdminService {
     return this.http.get<any[]>(`${this.url}/user`);
   }
 
+  public countAllUsersRoles(): Observable<any> {
+    return this.http.get<any>(`${this.url}/user/count`);
+  }
+
   public updateUser(id: any,data: any): Observable<any> {
     return this.http.put<any>(`${this.url}/user/${id}`, data);
   }

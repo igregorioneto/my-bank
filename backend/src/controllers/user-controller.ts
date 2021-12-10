@@ -19,6 +19,34 @@ class UserController {
         }
     }
 
+    public async countAllUsersRoles(req: Request, res: Response): Promise<Response> {
+        try {
+            const users = await UserRepository.getUsers();
+            let adminCount = [];
+            let clientCount = [];
+            for await (let user of users) {
+                if (user.roles === 'admin') {
+                    adminCount.push(user);
+                }
+
+                if (user.roles === 'client') {
+                    clientCount.push(user);
+                }
+            }
+
+            let admin = adminCount.length;
+            let client = clientCount.length;
+            return res.status(200).send({
+                admin,
+                client
+            });
+        } catch(error) {
+            return res.status(404).send({
+                error: 'Erro ao realizar consulta'
+            });
+        }
+    }
+
 
     public async getUsersTransfer(req: Request, res: Response): Promise<Response> {
         try {

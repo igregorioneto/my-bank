@@ -22,7 +22,7 @@
     </div>
 
     <div class="row users">
-        <div class="col-8">
+        <div class="col-4">
             <div class="list-group">
                 <div *ngFor="let user of users" class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
@@ -37,6 +37,10 @@
                   </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col-4">
+          <app-grafico-admin></app-grafico-admin>
         </div>
     </div>
 

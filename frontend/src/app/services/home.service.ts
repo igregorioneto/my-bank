@@ -26,4 +26,8 @@ export class HomeService {
     const request = new HttpRequest('POST', `${this.url}/user/admin/create`, formData);
     return this.http.request(request);
   }
+
+  public countAllTransactions(): Observable<any> {
+    return this.http.get<any>(`${this.url}/transaction/count`);
+  }
 }

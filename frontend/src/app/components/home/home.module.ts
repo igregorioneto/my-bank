@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
 import { HomeRoutingModule } from './home.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { GraficoComponent } from './grafico/grafico.component';
 
 const ngxLoadingXConfig: NgxLoadingXConfig = {
   show: false,
@@ -36,7 +37,8 @@ const ngxLoadingXConfig: NgxLoadingXConfig = {
     HomeComponent,
     WithdrawDialogComponent,
     TransferDialogComponent,
-    DepositDialogComponent
+    DepositDialogComponent,
+    GraficoComponent,
   ],
   imports: [
     // BrowserModule,

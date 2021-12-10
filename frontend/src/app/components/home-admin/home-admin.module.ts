@@ -13,6 +13,7 @@ import { HomeAdminComponent } from './home-admin.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UploadArquivoComponent } from './upload-arquivo/upload-arquivo.component';
 import { HomeAdminRoutingModule } from './home-admin.routing.module';
+import { GraficoAdminComponent } from './grafico-admin/grafico-admin.component';
 
 const ngxLoadingXConfig: NgxLoadingXConfig = {
   show: false,
@@ -33,6 +34,7 @@ const ngxLoadingXConfig: NgxLoadingXConfig = {
     HomeAdminComponent,
     EditUserComponent,
     UploadArquivoComponent,
+    GraficoAdminComponent
   ],
   imports: [
     CommonModule,

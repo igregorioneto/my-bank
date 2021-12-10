@@ -12,37 +12,44 @@ class TransactionController {
     }
 
     public async countAllTransactions(req: Request, res: Response): Promise<Response> {
-        const token = req.body.token || req.query.token || req.headers['x-access-token'];
-        const user_id_token = await authService.decodeToken(token);
-        const user_id = user_id_token.id;
-        const transaction = await transactionRepository.getAllTransactions(user_id);
-
-        let depositCount = [];
-        let withdrawCount = [];
-        let transferCount = [];
-        for await (let type of transaction) {
-            if (type.type_transaction === 0) {
-                depositCount.push(type);
+        try {
+            const token = req.body.token || req.query.token || req.headers['x-access-token'];
+            const user_id_token = await authService.decodeToken(token);
+            const user_id = user_id_token.id;
+            const transaction = await transactionRepository.getAllTransactions(user_id);
+    
+            let depositCount = [];
+            let withdrawCount = [];
+            let transferCount = [];
+            for await (let type of transaction) {
+                if (type.type_transaction === 0) {
+                    depositCount.push(type);
+                }
+    
+                if (type.type_transaction === 1) {
+                    withdrawCount.push(type);
+                }
+    
+                if (type.type_transaction === 2) {
+                    transferCount.push(type);
+                }
             }
-
-            if (type.type_transaction === 1) {
-                withdrawCount.push(type);
-            }
-
-            if (type.type_transaction === 2) {
-                transferCount.push(type);
-            }
+    
+            let deposit = depositCount.length;
+            let withdraw = withdrawCount.length;
+            let transfer = transferCount.length;
+            
+            return res.status(200).send({
+                deposit,
+                withdraw,
+                transfer,
+            });
+        } catch(error) {
+            return res.status(404).send({
+                error: 'Erro ao realizar a transação'
+            });
         }
-
-        let deposit = depositCount.length;
-        let withdraw = withdrawCount.length;
-        let transfer = transferCount.length;
         
-        return res.status(200).send({
-            deposit,
-            withdraw,
-            transfer,
-        });
     }
 
     public async deposit(req: Request, res: Response): Promise<Response> {

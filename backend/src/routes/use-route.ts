@@ -13,6 +13,7 @@ const routes = Router();
 routes.get('/', authService.authorize, UserController.getUsers);
 routes.get('/logged', authService.authorize, UserController.getUsersLogger);
 routes.get('/transfer', authService.authorize, UserController.getUsersTransfer);
+routes.get('/count', authService.authorize, UserController.countAllUsersRoles);
 
 routes.post('/', UserController.create);
 routes.post('/admin/create', multerConfig.single("file"), UserController.userCreateJobs);
