@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.servicesService.remove();
     this.loading();
     this.loginForm = this.formBuilder.group(
       {

@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div class="row transactions" *ngIf="status">
+    <div class="row transactions" *ngIf="status && transactions.length > 0">
         <div class="col-4">
             <div class="list-group">
                 <div *ngFor="let info of transactions" class="list-group-item list-group-item-action" aria-current="true">

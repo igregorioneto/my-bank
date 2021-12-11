@@ -9,6 +9,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { LoginRoutingModule } from '../login/login.routing.module';
 import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
+import { CadastroRoutingModule } from './cadastro.routing.module';
 
 const ngxLoadingXConfig: NgxLoadingXConfig = {
   show: false,
@@ -36,7 +37,7 @@ const ngxLoadingXConfig: NgxLoadingXConfig = {
     TableModule,
     ButtonModule,
     FormsModule,
-    LoginRoutingModule,
+    CadastroRoutingModule,
     NgxLoadingXModule.forRoot(ngxLoadingXConfig),
   ]
 })

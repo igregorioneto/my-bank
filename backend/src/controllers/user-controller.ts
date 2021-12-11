@@ -151,12 +151,9 @@ class UserController {
             
             for await (let user of usersCsv) {
                 const verifyUser = await UserRepository.getUserEmail(user.email);
-                if (verifyUser) {
-                    return res.status(404).send({
-                        message: 'Usuário já existe!'
-                    });
+                if (!verifyUser) {
+                    await UserRepository.create(user);
                 }
-                await UserRepository.create(user);
                 // console.log(user)
                 // await Queue.add('UserJobs', user);
             }
@@ -242,7 +239,6 @@ class UserController {
             }
             
             const checkedPassword = bcrypt.compare(password, user.password);
-            console.log(checkedPassword);
             if (!checkedPassword) {
                 return res.status(422).send({
                     error: 'Senha inválida!'

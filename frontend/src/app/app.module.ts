@@ -31,6 +31,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { NgxLoadingXConfig, POSITION, SPINNER, NgxLoadingXModule } from 'ngx-loading-x';
 import { CommonModule } from '@angular/common';
+import { Error404Component } from './components/error404/error404.component';
 
 const ngxLoadingXConfig: NgxLoadingXConfig = {
   show: false,
@@ -52,6 +53,7 @@ const ngxLoadingXConfig: NgxLoadingXConfig = {
     AppComponent,
     LoginComponent,
     CadastroComponent,
+    Error404Component,
     // HomeComponent,
     // DepositDialogComponent,
     // WithdrawDialogComponent,

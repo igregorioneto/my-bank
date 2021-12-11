@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="row users">
+    <div class="row users" *ngIf="users.length > 0">
         <div class="col-4">
             <div class="list-group">
                 <div *ngFor="let user of users" class="list-group-item list-group-item-action" aria-current="true">

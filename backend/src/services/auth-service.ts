@@ -21,7 +21,6 @@ class AuthService {
         } else {
             jwt.verify(token, process.env.SECRET, (error, decoded) => {
                 if(error) {
-                    console.log(error);
                     res.status(401).send({
                         error: 'Token inválido'
                     });
