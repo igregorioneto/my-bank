@@ -20,9 +20,9 @@
 
 <img src="https://img.shields.io/static/v1?label=MyBank&message=Greg%C3%B3rioNeto&color=7159c1&style=for-the-badge&logo=ghost">
 
-![MyBank](https://github.com/igregorioneto/cad-unidades-consumidoras/blob/Unidades/src/assets/icons/simplescreenrecorder-2021-08-13_21.21.16.gif?raw=true)
+![MyBank](https://github.com/igregorioneto/my-bank/blob/main/assets/mybank.gif)
 
-![MyBank-Estrutura](https://github.com/igregorioneto/cad-unidades-consumidoras/blob/Unidades/src/assets/icons/simplescreenrecorder-2021-08-13_21.21.16.gif?raw=true)
+![MyBank-Estrutura](https://github.com/igregorioneto/my-bank/blob/main/assets/mybanck-estrutura.png)
 
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
