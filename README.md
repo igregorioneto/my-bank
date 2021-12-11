@@ -35,7 +35,13 @@ Objetivo:
 </h2>
 
 <p>
-🚀 Sistema criado para simular transações bancárias. O cliente pode cadastrar na plataforma e realizar transações com outros clientes. Caso a conta seja de um Administrador é redirecionado para a tela de administradores e se for um Cliente é redirecionado para a tela de clientes. Os gráficos mostram a quantidade de transações do lado do cliente e do lado do administrador mostra o total de Usuários administradores e clientes.
+🚀 Sistema criado para simular transações bancárias.
+</p>
+<p>
+🚀 Na parte do Administrador pode realizar cadastro de usuários com arquivo csv.
+</p>
+<p>
+🚀 O cliente pode cadastrar na plataforma e realizar transações com outros clientes. Caso a conta seja de um Administrador é redirecionado para a tela de administradores e se for um Cliente é redirecionado para a tela de clientes. Os gráficos mostram a quantidade de transações do lado do cliente e do lado do administrador mostra o total de Usuários administradores e clientes.
 </p>
 <p>
 🚀 Foi desenvolvido o backend que é em NodeJS com Typescript e MongoDB. O frontend foi desenvolvimento em Angular.
